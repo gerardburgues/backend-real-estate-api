@@ -1,7 +1,6 @@
 import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 
 from services.ai_service import AIService
@@ -38,7 +37,7 @@ except ValueError:
     pass
 
 
-@app.post("/tool/find-apartment", response_model=FindApartmentResponse)
+@app.post("/tool/find-apartment")
 async def find_apartment(request: FindApartmentRequest):
     """
     Find the best matching apartment based on user query using Gemini LLM.
@@ -52,8 +51,8 @@ async def find_apartment(request: FindApartmentRequest):
     result = await ai_service.find_best_apartment(
         request.query, apartments
     )
-    # Explicitly convert to dict and return as JSONResponse to avoid serialization issues
-    return JSONResponse(content=result.model_dump(exclude_none=False))
+    # Return dict directly - FastAPI will serialize it automatically
+    return result.model_dump(exclude_none=False)
 
 
 @app.post("/tool/add-user", response_model=SuccessResponse)
