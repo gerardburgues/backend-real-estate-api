@@ -1,0 +1,20 @@
+# Ignore frontend folder from Vercel deployment
+frontend/
+
+# Ignore local development files
+venv/
+.env
+.env.local
+*.log
+__pycache__/
+*.pyc
+
+# Docker files (not needed for Vercel)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Documentation (optional, but keeps deployment smaller)
+DEPLOYMENT.md
+SETUP_GITHUB.md
+
