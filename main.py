@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from services.ai_service import AIService
 from models.schemas import (
     FindApartmentRequest,
+    FindApartmentResponse,
     AddUserRequest,
     AddAppointmentRequest,
     SuccessResponse,
@@ -36,7 +37,7 @@ except ValueError:
     pass
 
 
-@app.post("/tool/find-apartment", response_model=dict)
+@app.post("/tool/find-apartment", response_model=FindApartmentResponse)
 async def find_apartment(request: FindApartmentRequest):
     """
     Find the best matching apartment based on user query using Gemini LLM.
@@ -47,10 +48,10 @@ async def find_apartment(request: FindApartmentRequest):
         )
     
     apartments = load_apartments()
-    selected_apartment = await ai_service.find_best_apartment(
+    result = await ai_service.find_best_apartment(
         request.query, apartments
     )
-    return selected_apartment
+    return result
 
 
 @app.post("/tool/add-user", response_model=SuccessResponse)
