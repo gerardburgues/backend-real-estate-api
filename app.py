@@ -77,6 +77,13 @@ async def add_appointment(request: AddAppointmentRequest):
     )
 
 
+@app.get("/")
+async def root():
+    """Root endpoint - redirects to API documentation"""
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/docs")
+
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""

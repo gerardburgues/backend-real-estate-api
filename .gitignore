@@ -56,5 +56,8 @@ htmlcov/
 # Vercel
 .vercel
 
+# Documentation (optional - uncomment if you want to exclude from git)
+# docs/
+
 # Frontend folder is kept in git but excluded from Vercel deployment via vercel.json
 

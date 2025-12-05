@@ -169,32 +169,60 @@ Once the server is running, visit:
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
 
-## Testing with Streamlit
+## Testing
 
-A Streamlit app is included in the `frontend/` folder for easy local testing of all endpoints:
+### Local Testing with Streamlit
 
-1. Make sure the FastAPI server is running:
+A Streamlit app is included in the `frontend/` folder for easy local testing:
+
 ```bash
+# Start FastAPI server
 python app.py
-# or
-python main.py
-```
 
-2. In a separate terminal, run the Streamlit app:
-```bash
+# In another terminal, start Streamlit
 cd frontend
 streamlit run app.py
 ```
 
-3. The app will open in your browser at `http://localhost:8501`
+### API Testing Scripts
 
-The Streamlit app provides:
-- Text field for entering apartment search queries
-- Buttons to test all four endpoints (Find Apartment, Add User, Add Appointment, Health Check)
-- Response viewer showing request/response data
-- Configurable API base URL in the sidebar
+Use the provided test script:
+```bash
+./scripts/test-api.sh
+```
+
+See `docs/test-api.md` for detailed testing instructions.
 
 **Note:** The Streamlit frontend is for local development only and is not deployed to Vercel.
+
+## Project Structure
+
+```
+BackendRealEstate/
+├── app.py                 # FastAPI entry point (Vercel)
+├── main.py                # FastAPI entry point (local/Docker)
+├── requirements.txt       # Python dependencies
+├── pyproject.toml         # Python project metadata
+├── apartments.json        # Apartment data
+├── services/              # Business logic services
+│   ├── ai_service.py      # Gemini AI integration
+│   └── prompt.md          # AI prompts
+├── models/                # Pydantic models
+├── utils/                 # Utility functions
+├── frontend/              # Streamlit testing app (local only)
+├── docs/                  # Documentation files
+└── scripts/               # Utility scripts
+```
+
+## API Documentation
+
+- **Interactive Docs**: Visit `/docs` for Swagger UI
+- **OpenAPI Schema**: Visit `/openapi.json` for OpenAPI schema
+- **Root Route**: Visit `/` to be redirected to `/docs`
+
+## Deployment
+
+See `docs/DEPLOYMENT.md` for complete deployment instructions.
 
 ## Vapi Integration
 
