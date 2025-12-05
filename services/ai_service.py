@@ -2,7 +2,7 @@ import json
 import re
 import os
 from pathlib import Path
-from typing import List, Dict
+from typing import List, Dict, Optional
 from fastapi import HTTPException
 from google.genai import types
 from google import genai
@@ -82,13 +82,21 @@ class AIService:
             # Try to extract ID number (handle cases where LLM adds extra text)
             apartment_id = self._extract_apartment_id(apartment_id_str, apartments)
             
+            # Check if apartment ID was found
+            if apartment_id is None:
+                raise HTTPException(
+                    status_code=404, detail="No matching apartment found"
+                )
+            
             # Find apartment by ID
             for apartment in apartments:
                 if apartment.get("id") == apartment_id:
                     return apartment
             
-            # Fallback: return first apartment if ID not found
-            return apartments[0]
+            # If apartment ID was extracted but apartment not found in list
+            raise HTTPException(
+                status_code=404, detail="No matching apartment found"
+            )
         
         except ValueError as e:
             raise HTTPException(
@@ -99,7 +107,7 @@ class AIService:
                 status_code=500, detail=f"Error calling Gemini API: {str(e)}"
             )
     
-    def _extract_apartment_id(self, response_text: str, apartments: List[Dict]) -> int:
+    def _extract_apartment_id(self, response_text: str, apartments: List[Dict]) -> Optional[int]:
         """
         Extract apartment ID from LLM response
         
@@ -108,7 +116,7 @@ class AIService:
             apartments: List of apartments to validate IDs against
             
         Returns:
-            Valid apartment ID, or first apartment's ID as fallback
+            Valid apartment ID, or None if no valid ID found
         """
         # Extract all numbers from the response
         numbers = re.findall(r'\d+', response_text)
@@ -124,6 +132,6 @@ class AIService:
             except ValueError:
                 continue
         
-        # Fallback: return first apartment's ID
-        return apartments[0].get("id") if apartments else None
+        # Return None if no valid apartment ID found
+        return None
 
