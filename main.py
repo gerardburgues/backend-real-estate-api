@@ -51,7 +51,8 @@ async def find_apartment(request: FindApartmentRequest):
     result = await ai_service.find_best_apartment(
         request.query, apartments
     )
-    return result
+    # Convert Pydantic model to dict for FastAPI response serialization
+    return result.model_dump()
 
 
 @app.post("/tool/add-user", response_model=SuccessResponse)
