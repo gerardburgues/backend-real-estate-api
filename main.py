@@ -1,6 +1,7 @@
 import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 
 from services.ai_service import AIService
@@ -51,8 +52,8 @@ async def find_apartment(request: FindApartmentRequest):
     result = await ai_service.find_best_apartment(
         request.query, apartments
     )
-    # Convert Pydantic model to dict for FastAPI response serialization
-    return result.model_dump()
+    # Explicitly convert to dict and return as JSONResponse to avoid serialization issues
+    return JSONResponse(content=result.model_dump(exclude_none=False))
 
 
 @app.post("/tool/add-user", response_model=SuccessResponse)

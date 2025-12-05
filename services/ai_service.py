@@ -67,8 +67,7 @@ class AIService:
             # print("before running the config (async)")
         
             
-            # Get the JSON schema from Pydantic model for structured output
-          
+            # Pass Pydantic model directly to Gemini for structured output
             response = await self.client.aio.models.generate_content(
                 model=self.model,
                 contents=context,
@@ -78,7 +77,7 @@ class AIService:
                     max_output_tokens=300,
                     response_schema=GeminiApartmentResponse,
                     response_mime_type="application/json",
-                    #thinking_config=types.ThinkingConfig(thinking_budget=0),
+                    thinking_config=types.ThinkingConfig(thinking_budget=0),
                 ),
             )
             print("response: ", response)
