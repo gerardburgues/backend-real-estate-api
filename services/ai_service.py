@@ -41,7 +41,7 @@ class AIService:
             context_start = content.find("## Context Template") + len("## Context Template")
             self.context_template = content[context_start:].strip()
         
-    async def find_best_apartment(self, query: str, apartments: List[Dict]) -> FindApartmentResponse:
+    async def find_best_apartment(self, query: str, apartments: List[Dict]) -> Dict:
         """
         Use Gemini LLM to find the best matching apartment based on user query
         
@@ -77,7 +77,7 @@ class AIService:
                     max_output_tokens=300,
                     response_schema=GeminiApartmentResponse,
                     response_mime_type="application/json",
-                    thinking_config=types.ThinkingConfig(thinking_budget=0),
+                    #thinking_config=types.ThinkingConfig(thinking_budget=0),
                 ),
             )
             print("response: ", response)
@@ -104,49 +104,62 @@ class AIService:
             
             # Parse structured JSON response
             try:
-                response_text = response.text.strip() if response.text else "{}"
-                response_data = json.loads(response_text)
+                # Check if Gemini SDK already parsed the response
+                if hasattr(response, 'parsed') and response.parsed is not None:
+                    gemini_response = response.parsed
+                    print(f"Using parsed response: {gemini_response}")
+                else:
+                    # Fallback to parsing text manually
+                    response_text = response.text.strip() if response.text else "{}"
+                    response_data = json.loads(response_text)
+                    # Create response from Gemini's structured data (only exists and apartment_id)
+                    gemini_response = GeminiApartmentResponse(**response_data)
+                    print(f"Manually parsed response: {gemini_response}")
                 
-                # Create response from Gemini's structured data (only exists and apartment_id)
-                gemini_response = GeminiApartmentResponse(**response_data)
-                
-                # Build full response with apartment data
-                structured_response = FindApartmentResponse(
-                    exists=gemini_response.exists,
-                    apartment_id=gemini_response.apartment_id,
-                    apartment=None,
-                    message=None
-                )
+                # Build response dict
+                exists = gemini_response.exists
+                apartment_id = gemini_response.apartment_id
                 
                 # If max tokens reached, set exists to False but keep apartment_id
                 if max_tokens_reached:
-                    structured_response.exists = False
+                    exists = False
                 
                 # Verify apartment actually exists in the list and populate data
-                if structured_response.exists and structured_response.apartment_id is not None:
+                if exists and apartment_id is not None:
                     # AI said exists=True, verify and populate apartment data
                     found_apartment = None
                     for apt in apartments:
-                        if apt.get("id") == structured_response.apartment_id:
+                        if apt.get("id") == apartment_id:
                             found_apartment = apt
                             break
                     
                     if found_apartment:
-                        # Apartment exists, populate full data
-                        structured_response.apartment = ApartmentData(**found_apartment)
-                        structured_response.message = None
+                        # Apartment exists, return full data
+                        print(f"Returning apartment: exists=True, apartment_id={apartment_id}")
+                        return {
+                            "exists": True,
+                            "apartment_id": apartment_id,
+                            "apartment": found_apartment,
+                            "message": None
+                        }
                     else:
                         # AI said exists but apartment not found in list
-                        structured_response.exists = False
-                        structured_response.apartment = None
-                        structured_response.message = "Apartment does not exist"
+                        print(f"Apartment not found: exists=False, apartment_id={apartment_id}")
+                        return {
+                            "exists": False,
+                            "apartment_id": apartment_id,
+                            "apartment": None,
+                            "message": "Apartment does not exist"
+                        }
                 else:
                     # AI said exists=False or no apartment_id
-                    structured_response.exists = False
-                    structured_response.apartment = None
-                    structured_response.message = "Apartment does not exist"
-                
-                return structured_response
+                    print(f"No apartment found: exists=False, apartment_id={apartment_id}")
+                    return {
+                        "exists": False,
+                        "apartment_id": apartment_id,
+                        "apartment": None,
+                        "message": "Apartment does not exist"
+                    }
                 
             except (json.JSONDecodeError, ValueError) as e:
                 # Fallback: if JSON parsing fails, try to extract from text
@@ -168,21 +181,21 @@ class AIService:
                     exists = False
                     found_apartment = None
                 
-                # Return response with apartment data if found, or null with message if not
+                # Return response as dict with apartment data if found, or null with message if not
                 if exists and found_apartment:
-                    return FindApartmentResponse(
-                        exists=True,
-                        apartment_id=apartment_id,
-                        apartment=ApartmentData(**found_apartment),
-                        message=None
-                    )
+                    return {
+                        "exists": True,
+                        "apartment_id": apartment_id,
+                        "apartment": found_apartment,
+                        "message": None
+                    }
                 else:
-                    return FindApartmentResponse(
-                        exists=False,
-                        apartment_id=apartment_id,
-                        apartment=None,
-                        message="Apartment does not exist"
-                    )
+                    return {
+                        "exists": False,
+                        "apartment_id": apartment_id,
+                        "apartment": None,
+                        "message": "Apartment does not exist"
+                    }
         
         except ValueError as e:
             raise HTTPException(

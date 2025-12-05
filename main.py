@@ -48,11 +48,10 @@ async def find_apartment(request: FindApartmentRequest):
         )
     
     apartments = load_apartments()
-    result = await ai_service.find_best_apartment(
+    selected_apartment = await ai_service.find_best_apartment(
         request.query, apartments
     )
-    # Return dict directly - FastAPI will serialize it automatically
-    return result.model_dump(exclude_none=False)
+    return selected_apartment
 
 
 @app.post("/tool/add-user", response_model=SuccessResponse)
