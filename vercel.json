@@ -3,12 +3,6 @@
   "outputDirectory": ".",
   "devCommand": null,
   "installCommand": "pip install -r requirements.txt",
-  "framework": null,
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/app.py"
-    }
-  ]
+  "framework": null
 }
 
