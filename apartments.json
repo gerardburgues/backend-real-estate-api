@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Sunset View Apartments",
+    "street": "123 Ocean Boulevard",
+    "city": "Miami",
+    "state": "FL",
+    "zipcode": "33139",
+    "price": 2500,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "sqft": 1200,
+    "description": "Beautiful ocean view apartment with modern amenities"
+  },
+  {
+    "id": 2,
+    "name": "Downtown Loft",
+    "street": "456 Main Street",
+    "city": "New York",
+    "state": "NY",
+    "zipcode": "10001",
+    "price": 3200,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "sqft": 850,
+    "description": "Stylish loft in the heart of downtown with high ceilings"
+  },
+  {
+    "id": 3,
+    "name": "Garden Paradise",
+    "street": "789 Park Avenue",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zipcode": "90028",
+    "price": 2800,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "sqft": 1500,
+    "description": "Spacious apartment with large garden and family-friendly neighborhood"
+  }
+]
+
