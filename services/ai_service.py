@@ -135,12 +135,20 @@ class AIService:
                                 break
                     
                     if found_apartments:
-                        # Apartments exist, return full data
+                        # Apartments exist, return only basic info (name, street, city, ref_code)
                         print(f"Returning {len(found_apartments)} apartment(s): exists=True, apartment_ids={apartment_ids}")
+                        basic_apartments = [
+                            {
+                                "name": apt.get("name"),
+                                "street": apt.get("street"),
+                                "city": apt.get("city"),
+                                "ref_code": apt.get("id")
+                            }
+                            for apt in found_apartments
+                        ]
                         return {
                             "exists": True,
-                            "apartment_ids": apartment_ids,
-                            "apartments": found_apartments,
+                            "apartments": basic_apartments,
                             "message": None
                         }
                     else:
@@ -187,16 +195,24 @@ class AIService:
                 
                 # Return response as dict with apartment data if found, or null with message if not
                 if exists and found_apartments:
+                    # Return only basic info (name, street, city, ref_code)
+                    basic_apartments = [
+                        {
+                            "name": apt.get("name"),
+                            "street": apt.get("street"),
+                            "city": apt.get("city"),
+                            "ref_code": apt.get("id")
+                        }
+                        for apt in found_apartments
+                    ]
                     return {
                         "exists": True,
-                        "apartment_ids": apartment_ids,
-                        "apartments": found_apartments,
+                        "apartments": basic_apartments,
                         "message": None
                     }
                 else:
                     return {
                         "exists": False,
-                        "apartment_ids": apartment_ids,
                         "apartments": [],
                         "message": "No matching apartments found"
                     }
