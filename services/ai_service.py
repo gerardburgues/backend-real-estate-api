@@ -135,7 +135,7 @@ class AIService:
                                 break
                     
                     if found_apartments:
-                        # Apartments exist, return only basic info (name, street, city, ref_code)
+                        # Apartments exist, return basic info with status and qualification
                         print(f"Returning {len(found_apartments)} apartment(s): exists=True, apartment_ids={apartment_ids}")
                         basic_apartments = [
                             {
@@ -143,7 +143,9 @@ class AIService:
                                 "name": apt.get("name"),
                                 "street": apt.get("street"),
                                 "city": apt.get("city"),
-                                "ref_code": apt.get("id")
+                                "ref_code": apt.get("id"),
+                                "available": apt.get("status") == "open",
+                                "qualification": apt.get("qualification")
                             }
                             for apt in found_apartments
                         ]
@@ -196,14 +198,16 @@ class AIService:
                 
                 # Return response as dict with apartment data if found, or null with message if not
                 if exists and found_apartments:
-                    # Return only basic info (name, street, city, ref_code)
+                    # Return basic info with status and qualification
                     basic_apartments = [
                         {
                             "id": apt.get("id"),
                             "name": apt.get("name"),
                             "street": apt.get("street"),
                             "city": apt.get("city"),
-                            "ref_code": apt.get("id")
+                            "ref_code": apt.get("id"),
+                            "available": apt.get("status") == "open",
+                            "qualification": apt.get("qualification")
                         }
                         for apt in found_apartments
                     ]
