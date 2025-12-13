@@ -78,6 +78,23 @@ async def add_appointment(request: AddAppointmentRequest):
     )
 
 
+@app.get("/apartments")
+async def get_apartments():
+    """
+    Get all apartments with basic info (name and street only).
+    """
+    apartments = load_apartments()
+    # Return only name and street for each apartment
+    basic_apartments = [
+        {
+            "name": apt.get("name"),
+            "street": apt.get("street")
+        }
+        for apt in apartments
+    ]
+    return {"apartments": basic_apartments}
+
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""
