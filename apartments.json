@@ -11,6 +11,7 @@
     "bathrooms": 2,
     "sqft": 1200,
     "description": "Beautiful ocean view apartment with modern amenities",
+    "status": "open",
     "qualification": {
       "allow_pets": true,
       "minimum_salary": 7500,
@@ -31,6 +32,7 @@
     "bathrooms": 1,
     "sqft": 850,
     "description": "Stylish loft in the heart of downtown with high ceilings",
+    "status": "closed",
     "qualification": {
       "allow_pets": false,
       "minimum_salary": 9600,
@@ -51,6 +53,7 @@
     "bathrooms": 2,
     "sqft": 1500,
     "description": "Spacious apartment with large garden and family-friendly neighborhood",
+    "status": "open",
     "qualification": {
       "allow_pets": true,
       "minimum_salary": 8400,
