@@ -2,3 +2,4 @@ from .schemas import FindApartmentRequest, AddUserRequest, AddAppointmentRequest
 
 __all__ = ["FindApartmentRequest", "AddUserRequest", "AddAppointmentRequest", "SuccessResponse"]
 
+

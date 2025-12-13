@@ -14,3 +14,4 @@ export API_URL=https://your-url.vercel.app
 ./scripts/test-api.sh
 ```
 
+

@@ -12,3 +12,4 @@ services:
       - ./apartments.json:/app/apartments.json
     restart: unless-stopped
 
+

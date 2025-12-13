@@ -118,47 +118,48 @@ class AIService:
                 
                 # Build response dict
                 exists = gemini_response.exists
-                apartment_id = gemini_response.apartment_id
+                apartment_ids = gemini_response.apartment_ids or []
                 
-                # If max tokens reached, set exists to False but keep apartment_id
+                # If max tokens reached, set exists to False but keep apartment_ids
                 if max_tokens_reached:
                     exists = False
                 
-                # Verify apartment actually exists in the list and populate data
-                if exists and apartment_id is not None:
+                # Verify apartments actually exist in the list and populate data
+                if exists and apartment_ids:
                     # AI said exists=True, verify and populate apartment data
-                    found_apartment = None
-                    for apt in apartments:
-                        if apt.get("id") == apartment_id:
-                            found_apartment = apt
-                            break
+                    found_apartments = []
+                    for apt_id in apartment_ids:
+                        for apt in apartments:
+                            if apt.get("id") == apt_id:
+                                found_apartments.append(apt)
+                                break
                     
-                    if found_apartment:
-                        # Apartment exists, return full data
-                        print(f"Returning apartment: exists=True, apartment_id={apartment_id}")
+                    if found_apartments:
+                        # Apartments exist, return full data
+                        print(f"Returning {len(found_apartments)} apartment(s): exists=True, apartment_ids={apartment_ids}")
                         return {
                             "exists": True,
-                            "apartment_id": apartment_id,
-                            "apartment": found_apartment,
+                            "apartment_ids": apartment_ids,
+                            "apartments": found_apartments,
                             "message": None
                         }
                     else:
-                        # AI said exists but apartment not found in list
-                        print(f"Apartment not found: exists=False, apartment_id={apartment_id}")
+                        # AI said exists but no apartments found in list
+                        print(f"No apartments found: exists=False, apartment_ids={apartment_ids}")
                         return {
                             "exists": False,
-                            "apartment_id": apartment_id,
-                            "apartment": None,
-                            "message": "Apartment does not exist"
+                            "apartment_ids": apartment_ids,
+                            "apartments": [],
+                            "message": "No matching apartments found"
                         }
                 else:
-                    # AI said exists=False or no apartment_id
-                    print(f"No apartment found: exists=False, apartment_id={apartment_id}")
+                    # AI said exists=False or no apartment_ids
+                    print(f"No apartments found: exists=False, apartment_ids={apartment_ids}")
                     return {
                         "exists": False,
-                        "apartment_id": apartment_id,
-                        "apartment": None,
-                        "message": "Apartment does not exist"
+                        "apartment_ids": [],
+                        "apartments": [],
+                        "message": "No matching apartments found"
                     }
                 
             except (json.JSONDecodeError, ValueError) as e:
@@ -168,33 +169,36 @@ class AIService:
                 apartment_id = self._extract_apartment_id_with_fallback(apartment_id_str, apartments)
                 
                 exists = False
-                found_apartment = None
+                found_apartments = []
+                apartment_ids = []
+                
                 if apartment_id is not None:
+                    apartment_ids = [apartment_id]
                     for apartment in apartments:
                         if apartment.get("id") == apartment_id:
                             exists = True
-                            found_apartment = apartment
+                            found_apartments = [apartment]
                             break
                 
                 # If max tokens reached, treat as not found
                 if max_tokens_reached:
                     exists = False
-                    found_apartment = None
+                    found_apartments = []
                 
                 # Return response as dict with apartment data if found, or null with message if not
-                if exists and found_apartment:
+                if exists and found_apartments:
                     return {
                         "exists": True,
-                        "apartment_id": apartment_id,
-                        "apartment": found_apartment,
+                        "apartment_ids": apartment_ids,
+                        "apartments": found_apartments,
                         "message": None
                     }
                 else:
                     return {
                         "exists": False,
-                        "apartment_id": apartment_id,
-                        "apartment": None,
-                        "message": "Apartment does not exist"
+                        "apartment_ids": apartment_ids,
+                        "apartments": [],
+                        "message": "No matching apartments found"
                     }
         
         except ValueError as e:

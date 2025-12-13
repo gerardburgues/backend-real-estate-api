@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
 
 class FindApartmentRequest(BaseModel):
@@ -39,11 +39,11 @@ class ApartmentData(BaseModel):
 
 
 class GeminiApartmentResponse(BaseModel):
-    """Simplified response model for Gemini AI (only exists and apartment_id)"""
-    exists: bool = Field(description="True if a matching apartment exists in the list, False otherwise")
-    apartment_id: Optional[int] = Field(
-        default=None,
-        description="The ID of the apartment found (or attempted to find). Return the ID even if exists is False"
+    """Simplified response model for Gemini AI (supports single or multiple apartment IDs)"""
+    exists: bool = Field(description="True if matching apartments exist in the list, False otherwise")
+    apartment_ids: List[int] = Field(
+        default_factory=list,
+        description="List of apartment IDs that match the query. Return a single ID for specific queries, multiple IDs for general queries. Return empty list if no matches found."
     )
     
     model_config = {"arbitrary_types_allowed": True}

@@ -30,3 +30,4 @@ def load_apartments() -> List[Dict]:
             detail=f"Invalid JSON in apartments.json: {str(e)}"
         )
 
+

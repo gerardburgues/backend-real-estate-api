@@ -81,14 +81,15 @@ async def add_appointment(request: AddAppointmentRequest):
 @app.get("/apartments")
 async def get_apartments():
     """
-    Get all apartments with basic info (name and street only).
+    Get all apartments with basic info (name, street, and reference).
     """
     apartments = load_apartments()
-    # Return only name and street for each apartment
+    # Return name, street, and reference (id) for each apartment
     basic_apartments = [
         {
             "name": apt.get("name"),
-            "street": apt.get("street")
+            "street": apt.get("street"),
+            "reference": apt.get("id")
         }
         for apt in apartments
     ]
