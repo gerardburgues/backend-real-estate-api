@@ -9,6 +9,8 @@ from models.schemas import (
     FindApartmentResponse,
     AddUserRequest,
     AddAppointmentRequest,
+    GetApartmentInfoRequest,
+    GetApartmentQualificationRequest,
     SuccessResponse,
 )
 from utils.apartment_loader import load_apartments
@@ -78,7 +80,7 @@ async def add_appointment(request: AddAppointmentRequest):
     )
 
 
-@app.get("/apartments")
+@app.post("/tool/get-apartments")
 async def get_apartments():
     """
     Get all apartments with basic info (name, street, city, and ref_code).
@@ -97,13 +99,13 @@ async def get_apartments():
     return {"apartments": basic_apartments}
 
 
-@app.get("/apartments/{apartment_id}/info")
-async def get_apartment_info(apartment_id: int):
+@app.post("/tool/get-apartment-info")
+async def get_apartment_info(request: GetApartmentInfoRequest):
     """
     Get apartment information by ID with is_qualification flag.
     
     Args:
-        apartment_id: The ID of the apartment to retrieve
+        request: Request containing apartment_id
         
     Returns:
         Full apartment information with is_qualification boolean
@@ -116,14 +118,14 @@ async def get_apartment_info(apartment_id: int):
     # Find apartment by ID
     apartment = None
     for apt in apartments:
-        if apt.get("id") == apartment_id:
+        if apt.get("id") == request.apartment_id:
             apartment = apt.copy()
             break
     
     if not apartment:
         raise HTTPException(
             status_code=404,
-            detail=f"Apartment with ID {apartment_id} not found"
+            detail=f"Apartment with ID {request.apartment_id} not found"
         )
     
     # Add is_qualification flag (remove qualification from response)
@@ -134,13 +136,13 @@ async def get_apartment_info(apartment_id: int):
     return apartment_with_flag
 
 
-@app.get("/apartments/{apartment_id}/qualification")
-async def get_apartment_qualification(apartment_id: int):
+@app.post("/tool/get-apartment-qualification")
+async def get_apartment_qualification(request: GetApartmentQualificationRequest):
     """
     Get apartment information by ID with full qualification details.
     
     Args:
-        apartment_id: The ID of the apartment to retrieve
+        request: Request containing apartment_id
         
     Returns:
         Full apartment information including qualification details
@@ -153,14 +155,14 @@ async def get_apartment_qualification(apartment_id: int):
     # Find apartment by ID
     apartment = None
     for apt in apartments:
-        if apt.get("id") == apartment_id:
+        if apt.get("id") == request.apartment_id:
             apartment = apt
             break
     
     if not apartment:
         raise HTTPException(
             status_code=404,
-            detail=f"Apartment with ID {apartment_id} not found"
+            detail=f"Apartment with ID {request.apartment_id} not found"
         )
     
     return apartment

@@ -17,6 +17,16 @@ class AddAppointmentRequest(BaseModel):
     appointment_id: Optional[str] = None
 
 
+class GetApartmentInfoRequest(BaseModel):
+    """Request model for getting apartment info"""
+    apartment_id: int
+
+
+class GetApartmentQualificationRequest(BaseModel):
+    """Request model for getting apartment qualification"""
+    apartment_id: int
+
+
 class SuccessResponse(BaseModel):
     """Standard success response model"""
     status: str
