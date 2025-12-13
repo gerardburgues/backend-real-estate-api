@@ -137,18 +137,27 @@ class AIService:
                     if found_apartments:
                         # Apartments exist, return basic info with status and qualification
                         print(f"Returning {len(found_apartments)} apartment(s): exists=True, apartment_ids={apartment_ids}")
-                        basic_apartments = [
-                            {
+                        basic_apartments = []
+                        for apt in found_apartments:
+                            # Filter qualification to only include allow_pets and minimum_salary
+                            qualification = apt.get("qualification", {})
+                            filtered_qualification = {}
+                            if qualification:
+                                if "allow_pets" in qualification:
+                                    filtered_qualification["allow_pets"] = qualification["allow_pets"]
+                                if "minimum_salary" in qualification:
+                                    filtered_qualification["minimum_salary"] = qualification["minimum_salary"]
+                            
+                            basic_apartments.append({
                                 "id": apt.get("id"),
                                 "name": apt.get("name"),
                                 "street": apt.get("street"),
                                 "city": apt.get("city"),
                                 "ref_code": apt.get("id"),
+                                "price": apt.get("price"),
                                 "available": apt.get("status") == "open",
-                                "qualification": apt.get("qualification")
-                            }
-                            for apt in found_apartments
-                        ]
+                                "qualification": filtered_qualification if filtered_qualification else None
+                            })
                         return {
                             "exists": True,
                             "apartments": basic_apartments,
@@ -199,18 +208,27 @@ class AIService:
                 # Return response as dict with apartment data if found, or null with message if not
                 if exists and found_apartments:
                     # Return basic info with status and qualification
-                    basic_apartments = [
-                        {
+                    basic_apartments = []
+                    for apt in found_apartments:
+                        # Filter qualification to only include allow_pets and minimum_salary
+                        qualification = apt.get("qualification", {})
+                        filtered_qualification = {}
+                        if qualification:
+                            if "allow_pets" in qualification:
+                                filtered_qualification["allow_pets"] = qualification["allow_pets"]
+                            if "minimum_salary" in qualification:
+                                filtered_qualification["minimum_salary"] = qualification["minimum_salary"]
+                        
+                        basic_apartments.append({
                             "id": apt.get("id"),
                             "name": apt.get("name"),
                             "street": apt.get("street"),
                             "city": apt.get("city"),
                             "ref_code": apt.get("id"),
+                            "price": apt.get("price"),
                             "available": apt.get("status") == "open",
-                            "qualification": apt.get("qualification")
-                        }
-                        for apt in found_apartments
-                    ]
+                            "qualification": filtered_qualification if filtered_qualification else None
+                        })
                     return {
                         "exists": True,
                         "apartments": basic_apartments,
