@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Apartamento Moderno en la Rambla",
-    "street": "Carrer de la Rambla, 45",
+    "street": "Calle de la Rambla, 45",
     "city": "Barcelona",
     "state": "Cataluña",
     "zipcode": "08002",
@@ -23,7 +23,7 @@
   {
     "id": 2,
     "name": "Loft Premium en la Rambla",
-    "street": "Carrer de la Rambla, 78",
+    "street": "Calle de la Rambla, 78",
     "city": "Barcelona",
     "state": "Cataluña",
     "zipcode": "08002",
@@ -86,7 +86,7 @@
   {
     "id": 5,
     "name": "Hogar Familiar en Pau",
-    "street": "Carrer de la Pau, 12",
+    "street": "Calle de la Pau, 12",
     "city": "Sabadell",
     "state": "Cataluña",
     "zipcode": "08201",
@@ -107,7 +107,7 @@
   {
     "id": 6,
     "name": "Estudio en Pau",
-    "street": "Carrer de la Pau, 34",
+    "street": "Calle de la Pau, 34",
     "city": "Sabadell",
     "state": "Cataluña",
     "zipcode": "08201",
@@ -128,7 +128,7 @@
   {
     "id": 7,
     "name": "Piso Encantador en Gràcia",
-    "street": "Carrer de Gràcia, 25",
+    "street": "Calle de Gràcia, 25",
     "city": "Barcelona",
     "state": "Cataluña",
     "zipcode": "08012",
@@ -149,7 +149,7 @@
   {
     "id": 8,
     "name": "Loft Moderno en Gràcia",
-    "street": "Carrer de Gràcia, 89",
+    "street": "Calle de Gràcia, 89",
     "city": "Barcelona",
     "state": "Cataluña",
     "zipcode": "08012",
@@ -170,7 +170,7 @@
   {
     "id": 9,
     "name": "Apartamento Clásico en Eixample",
-    "street": "Carrer de Mallorca, 150",
+    "street": "Calle de Mallorca, 150",
     "city": "Barcelona",
     "state": "Cataluña",
     "zipcode": "08036",
@@ -191,7 +191,7 @@
   {
     "id": 10,
     "name": "Estudio en Mallorca",
-    "street": "Carrer de Mallorca, 280",
+    "street": "Calle de Mallorca, 280",
     "city": "Barcelona",
     "state": "Cataluña",
     "zipcode": "08037",
@@ -212,7 +212,7 @@
   {
     "id": 11,
     "name": "Apartamento Central en Terrassa",
-    "street": "Carrer Major, 45",
+    "street": "Calle Major, 45",
     "city": "Terrassa",
     "state": "Cataluña",
     "zipcode": "08221",
@@ -233,7 +233,7 @@
   {
     "id": 12,
     "name": "Piso en Calle Mayor de Terrassa",
-    "street": "Carrer Major, 78",
+    "street": "Calle Major, 78",
     "city": "Terrassa",
     "state": "Cataluña",
     "zipcode": "08221",
@@ -338,7 +338,7 @@
   {
     "id": 17,
     "name": "Loft Industrial en Sabadell",
-    "street": "Carrer de la Indústria, 25",
+    "street": "Calle de la Indústria, 25",
     "city": "Sabadell",
     "state": "Cataluña",
     "zipcode": "08201",
@@ -359,7 +359,7 @@
   {
     "id": 18,
     "name": "Piso en Calle Indústria de Sabadell",
-    "street": "Carrer de la Indústria, 67",
+    "street": "Calle de la Indústria, 67",
     "city": "Sabadell",
     "state": "Cataluña",
     "zipcode": "08201",
@@ -380,7 +380,7 @@
   {
     "id": 19,
     "name": "Barrio Gótico de Barcelona",
-    "street": "Carrer del Bisbe, 8",
+    "street": "Calle del Bisbe, 8",
     "city": "Barcelona",
     "state": "Cataluña",
     "zipcode": "08002",
@@ -401,7 +401,7 @@
   {
     "id": 20,
     "name": "Poblenou Moderno en Barcelona",
-    "street": "Carrer de Pujades, 120",
+    "street": "Calle de Pujades, 120",
     "city": "Barcelona",
     "state": "Cataluña",
     "zipcode": "08005",
