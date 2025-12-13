@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Rambla Modern Apartment",
+    "name": "Apartamento Moderno en la Rambla",
     "street": "Carrer de la Rambla, 45",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -10,7 +10,7 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 650,
-    "description": "Cozy apartment in the heart of Barcelona's famous Rambla, perfect for students",
+    "description": "Acogedor apartamento en el corazón de la famosa Rambla de Barcelona, perfecto para estudiantes",
     "status": "open",
     "qualification": {
       "allow_pets": false,
@@ -22,7 +22,7 @@
   },
   {
     "id": 2,
-    "name": "Rambla Premium Loft",
+    "name": "Loft Premium en la Rambla",
     "street": "Carrer de la Rambla, 78",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -31,7 +31,7 @@
     "bedrooms": 2,
     "bathrooms": 1,
     "sqft": 850,
-    "description": "Modern loft with city views, located on the vibrant Rambla",
+    "description": "Loft moderno con vistas a la ciudad, ubicado en la vibrante Rambla",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -43,7 +43,7 @@
   },
   {
     "id": 3,
-    "name": "Diagonal Luxury Suite",
+    "name": "Suite de Lujo en Diagonal",
     "street": "Avinguda Diagonal, 120",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -52,7 +52,7 @@
     "bedrooms": 2,
     "bathrooms": 2,
     "sqft": 1100,
-    "description": "Elegant apartment on Diagonal Avenue with modern finishes and balcony",
+    "description": "Elegante apartamento en la Avenida Diagonal con acabados modernos y balcón",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -64,7 +64,7 @@
   },
   {
     "id": 4,
-    "name": "Diagonal Business Apartment",
+    "name": "Apartamento Empresarial en Diagonal",
     "street": "Avinguda Diagonal, 450",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -73,7 +73,7 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 750,
-    "description": "Perfect for professionals, close to business district on Diagonal",
+    "description": "Perfecto para profesionales, cerca del distrito empresarial en Diagonal",
     "status": "open",
     "qualification": {
       "allow_pets": false,
@@ -85,7 +85,7 @@
   },
   {
     "id": 5,
-    "name": "Pau Family Home",
+    "name": "Hogar Familiar en Pau",
     "street": "Carrer de la Pau, 12",
     "city": "Sabadell",
     "state": "Catalonia",
@@ -94,7 +94,7 @@
     "bedrooms": 3,
     "bathrooms": 2,
     "sqft": 1300,
-    "description": "Spacious family apartment in quiet Sabadell neighborhood",
+    "description": "Espacioso apartamento familiar en tranquilo barrio de Sabadell",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -106,7 +106,7 @@
   },
   {
     "id": 6,
-    "name": "Pau Studio Apartment",
+    "name": "Estudio en Pau",
     "street": "Carrer de la Pau, 34",
     "city": "Sabadell",
     "state": "Catalonia",
@@ -115,7 +115,7 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 450,
-    "description": "Affordable studio on Pau street, ideal for young professionals",
+    "description": "Estudio asequible en la calle Pau, ideal para jóvenes profesionales",
     "status": "open",
     "qualification": {
       "allow_pets": false,
@@ -127,7 +127,7 @@
   },
   {
     "id": 7,
-    "name": "Gracia Charming Flat",
+    "name": "Piso Encantador en Gràcia",
     "street": "Carrer de Gràcia, 25",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -136,7 +136,7 @@
     "bedrooms": 2,
     "bathrooms": 1,
     "sqft": 800,
-    "description": "Charming apartment in trendy Gràcia district with traditional Catalan features",
+    "description": "Encantador apartamento en el distrito de moda de Gràcia con características tradicionales catalanas",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -148,7 +148,7 @@
   },
   {
     "id": 8,
-    "name": "Gracia Modern Loft",
+    "name": "Loft Moderno en Gràcia",
     "street": "Carrer de Gràcia, 89",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -157,7 +157,7 @@
     "bedrooms": 2,
     "bathrooms": 2,
     "sqft": 950,
-    "description": "Renovated loft with high ceilings in vibrant Gràcia area",
+    "description": "Loft renovado con techos altos en la vibrante zona de Gràcia",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -169,7 +169,7 @@
   },
   {
     "id": 9,
-    "name": "Eixample Classic Apartment",
+    "name": "Apartamento Clásico en Eixample",
     "street": "Carrer de Mallorca, 150",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -178,7 +178,7 @@
     "bedrooms": 3,
     "bathrooms": 2,
     "sqft": 1200,
-    "description": "Beautiful Eixample apartment with original modernist details",
+    "description": "Hermoso apartamento en Eixample con detalles modernistas originales",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -190,7 +190,7 @@
   },
   {
     "id": 10,
-    "name": "Mallorca Street Studio",
+    "name": "Estudio en Mallorca",
     "street": "Carrer de Mallorca, 280",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -199,7 +199,7 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 600,
-    "description": "Compact studio in Eixample, close to Sagrada Familia",
+    "description": "Estudio compacto en Eixample, cerca de la Sagrada Familia",
     "status": "open",
     "qualification": {
       "allow_pets": false,
@@ -211,7 +211,7 @@
   },
   {
     "id": 11,
-    "name": "Terrassa Central Apartment",
+    "name": "Apartamento Central en Terrassa",
     "street": "Carrer Major, 45",
     "city": "Terrassa",
     "state": "Catalonia",
@@ -220,7 +220,7 @@
     "bedrooms": 2,
     "bathrooms": 1,
     "sqft": 700,
-    "description": "Central location in Terrassa, close to all amenities",
+    "description": "Ubicación céntrica en Terrassa, cerca de todos los servicios",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -232,7 +232,7 @@
   },
   {
     "id": 12,
-    "name": "Terrassa Main Street Flat",
+    "name": "Piso en Calle Mayor de Terrassa",
     "street": "Carrer Major, 78",
     "city": "Terrassa",
     "state": "Catalonia",
@@ -241,7 +241,7 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 550,
-    "description": "Affordable flat on main street, perfect for commuters",
+    "description": "Piso asequible en la calle principal, perfecto para trabajadores",
     "status": "open",
     "qualification": {
       "allow_pets": false,
@@ -253,7 +253,7 @@
   },
   {
     "id": 13,
-    "name": "Badalona Beach View",
+    "name": "Vista al Mar en Badalona",
     "street": "Passeig de la Pau, 15",
     "city": "Badalona",
     "state": "Catalonia",
@@ -262,7 +262,7 @@
     "bedrooms": 2,
     "bathrooms": 1,
     "sqft": 850,
-    "description": "Apartment with sea views in Badalona, close to beach",
+    "description": "Apartamento con vistas al mar en Badalona, cerca de la playa",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -274,7 +274,7 @@
   },
   {
     "id": 14,
-    "name": "Badalona Peaceful Home",
+    "name": "Hogar Tranquilo en Badalona",
     "street": "Passeig de la Pau, 42",
     "city": "Badalona",
     "state": "Catalonia",
@@ -283,7 +283,7 @@
     "bedrooms": 3,
     "bathrooms": 2,
     "sqft": 1100,
-    "description": "Family-friendly apartment near the promenade in Badalona",
+    "description": "Apartamento familiar cerca del paseo marítimo en Badalona",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -295,7 +295,7 @@
   },
   {
     "id": 15,
-    "name": "L'Hospitalet Modern Flat",
+    "name": "Piso Moderno en L'Hospitalet",
     "street": "Avinguda de la Gran Via, 200",
     "city": "L'Hospitalet de Llobregat",
     "state": "Catalonia",
@@ -304,7 +304,7 @@
     "bedrooms": 2,
     "bathrooms": 1,
     "sqft": 750,
-    "description": "Modern apartment on Gran Via, excellent transport connections",
+    "description": "Apartamento moderno en Gran Via, excelentes conexiones de transporte",
     "status": "open",
     "qualification": {
       "allow_pets": false,
@@ -316,7 +316,7 @@
   },
   {
     "id": 16,
-    "name": "L'Hospitalet Gran Via Apartment",
+    "name": "Apartamento en Gran Via de L'Hospitalet",
     "street": "Avinguda de la Gran Via, 350",
     "city": "L'Hospitalet de Llobregat",
     "state": "Catalonia",
@@ -325,7 +325,7 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 650,
-    "description": "Well-connected apartment on Gran Via, close to Barcelona",
+    "description": "Apartamento bien comunicado en Gran Via, cerca de Barcelona",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -337,7 +337,7 @@
   },
   {
     "id": 17,
-    "name": "Sabadell Industrial Loft",
+    "name": "Loft Industrial en Sabadell",
     "street": "Carrer de la Indústria, 25",
     "city": "Sabadell",
     "state": "Catalonia",
@@ -346,7 +346,7 @@
     "bedrooms": 2,
     "bathrooms": 1,
     "sqft": 800,
-    "description": "Converted industrial loft in Sabadell with character",
+    "description": "Loft reconvertido en Sabadell con carácter",
     "status": "open",
     "qualification": {
       "allow_pets": true,
@@ -358,7 +358,7 @@
   },
   {
     "id": 18,
-    "name": "Sabadell Industry Street Flat",
+    "name": "Piso en Calle Indústria de Sabadell",
     "street": "Carrer de la Indústria, 67",
     "city": "Sabadell",
     "state": "Catalonia",
@@ -367,7 +367,7 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 600,
-    "description": "Affordable flat in Sabadell's industrial area",
+    "description": "Piso asequible en la zona industrial de Sabadell",
     "status": "open",
     "qualification": {
       "allow_pets": false,
@@ -379,7 +379,7 @@
   },
   {
     "id": 19,
-    "name": "Barcelona Gothic Quarter",
+    "name": "Barrio Gótico de Barcelona",
     "street": "Carrer del Bisbe, 8",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -388,7 +388,7 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 700,
-    "description": "Historic apartment in Gothic Quarter, full of character",
+    "description": "Apartamento histórico en el Barrio Gótico, lleno de carácter",
     "status": "open",
     "qualification": {
       "allow_pets": false,
@@ -400,7 +400,7 @@
   },
   {
     "id": 20,
-    "name": "Barcelona Poblenou Modern",
+    "name": "Poblenou Moderno en Barcelona",
     "street": "Carrer de Pujades, 120",
     "city": "Barcelona",
     "state": "Catalonia",
@@ -409,7 +409,7 @@
     "bedrooms": 2,
     "bathrooms": 2,
     "sqft": 1000,
-    "description": "Contemporary apartment in trendy Poblenou district, near beach",
+    "description": "Apartamento contemporáneo en el distrito de moda de Poblenou, cerca de la playa",
     "status": "open",
     "qualification": {
       "allow_pets": true,
