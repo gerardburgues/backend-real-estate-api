@@ -139,6 +139,7 @@ class AIService:
                         print(f"Returning {len(found_apartments)} apartment(s): exists=True, apartment_ids={apartment_ids}")
                         basic_apartments = [
                             {
+                                "id": apt.get("id"),
                                 "name": apt.get("name"),
                                 "street": apt.get("street"),
                                 "city": apt.get("city"),
@@ -198,6 +199,7 @@ class AIService:
                     # Return only basic info (name, street, city, ref_code)
                     basic_apartments = [
                         {
+                            "id": apt.get("id"),
                             "name": apt.get("name"),
                             "street": apt.get("street"),
                             "city": apt.get("city"),
