@@ -36,7 +36,7 @@ except ValueError:
     pass
 
 
-@app.post("/tool/find-apartment", response_model=dict)
+@app.post("/tool/find-apartment")
 async def find_apartment(request: FindApartmentRequest):
     """
     Find the best matching apartment based on user query using Gemini LLM.
@@ -75,6 +75,94 @@ async def add_appointment(request: AddAppointmentRequest):
         status="success",
         message="added appointment to calendar"
     )
+
+
+@app.get("/apartments")
+async def get_apartments():
+    """
+    Get all apartments with basic info (name, street, city, and ref_code).
+    """
+    apartments = load_apartments()
+    # Return name, street, city, and ref_code for each apartment
+    basic_apartments = [
+        {
+            "name": apt.get("name"),
+            "street": apt.get("street"),
+            "city": apt.get("city"),
+            "ref_code": apt.get("id")
+        }
+        for apt in apartments
+    ]
+    return {"apartments": basic_apartments}
+
+
+@app.get("/apartments/{apartment_id}/info")
+async def get_apartment_info(apartment_id: int):
+    """
+    Get apartment information by ID with is_qualification flag.
+    
+    Args:
+        apartment_id: The ID of the apartment to retrieve
+        
+    Returns:
+        Full apartment information with is_qualification boolean
+        
+    Raises:
+        HTTPException: 404 if apartment not found
+    """
+    apartments = load_apartments()
+    
+    # Find apartment by ID
+    apartment = None
+    for apt in apartments:
+        if apt.get("id") == apartment_id:
+            apartment = apt.copy()
+            break
+    
+    if not apartment:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Apartment with ID {apartment_id} not found"
+        )
+    
+    # Add is_qualification flag (remove qualification from response)
+    is_qualification = "qualification" in apartment and apartment.get("qualification") is not None
+    apartment_with_flag = {k: v for k, v in apartment.items() if k != "qualification"}
+    apartment_with_flag["is_qualification"] = is_qualification
+    
+    return apartment_with_flag
+
+
+@app.get("/apartments/{apartment_id}/qualification")
+async def get_apartment_qualification(apartment_id: int):
+    """
+    Get apartment information by ID with full qualification details.
+    
+    Args:
+        apartment_id: The ID of the apartment to retrieve
+        
+    Returns:
+        Full apartment information including qualification details
+        
+    Raises:
+        HTTPException: 404 if apartment not found
+    """
+    apartments = load_apartments()
+    
+    # Find apartment by ID
+    apartment = None
+    for apt in apartments:
+        if apt.get("id") == apartment_id:
+            apartment = apt
+            break
+    
+    if not apartment:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Apartment with ID {apartment_id} not found"
+        )
+    
+    return apartment
 
 
 @app.get("/")
