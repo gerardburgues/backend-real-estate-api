@@ -21,28 +21,7 @@
     },
     "neighbourhood": "Ciutat Vella"
   },
-  {
-    "id": 1002,
-    "name": "Loft Premium en la Rambla",
-    "street": "Calle de la Rambla 78",
-    "city": "Barcelona",
-    "state": "Cataluña",
-    "zipcode": "08002",
-    "price": 1800,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "sqft": 850,
-    "description": "Loft moderno con vistas a la ciudad, ubicado en la vibrante Rambla",
-    "status": "open",
-    "qualification": {
-      "allow_pets": true,
-      "minimum_salary": 5400,
-      "minimum_credit_score": 650,
-      "deposit_required": true,
-      "deposit_amount": 1800
-    },
-    "neighbourhood": "Ciutat Vella"
-  },
+
   {
     "id": 1003,
     "name": "Suite de Lujo en Diagonal",
