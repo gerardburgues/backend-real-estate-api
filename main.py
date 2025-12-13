@@ -95,6 +95,38 @@ async def get_apartments():
     return {"apartments": basic_apartments}
 
 
+@app.get("/apartments/{apartment_id}")
+async def get_apartment_by_id(apartment_id: int):
+    """
+    Get apartment details by ID including qualification rules.
+    
+    Args:
+        apartment_id: The ID of the apartment to retrieve
+        
+    Returns:
+        Full apartment information including qualification rules
+        
+    Raises:
+        HTTPException: 404 if apartment not found
+    """
+    apartments = load_apartments()
+    
+    # Find apartment by ID
+    apartment = None
+    for apt in apartments:
+        if apt.get("id") == apartment_id:
+            apartment = apt
+            break
+    
+    if not apartment:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Apartment with ID {apartment_id} not found"
+        )
+    
+    return apartment
+
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""

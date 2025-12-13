@@ -10,7 +10,14 @@
     "bedrooms": 2,
     "bathrooms": 2,
     "sqft": 1200,
-    "description": "Beautiful ocean view apartment with modern amenities"
+    "description": "Beautiful ocean view apartment with modern amenities",
+    "qualification": {
+      "allow_pets": true,
+      "minimum_salary": 7500,
+      "minimum_credit_score": 650,
+      "deposit_required": true,
+      "deposit_amount": 2500
+    }
   },
   {
     "id": 2,
@@ -23,7 +30,14 @@
     "bedrooms": 1,
     "bathrooms": 1,
     "sqft": 850,
-    "description": "Stylish loft in the heart of downtown with high ceilings"
+    "description": "Stylish loft in the heart of downtown with high ceilings",
+    "qualification": {
+      "allow_pets": false,
+      "minimum_salary": 9600,
+      "minimum_credit_score": 700,
+      "deposit_required": true,
+      "deposit_amount": 3200
+    }
   },
   {
     "id": 3,
@@ -36,7 +50,15 @@
     "bedrooms": 3,
     "bathrooms": 2,
     "sqft": 1500,
-    "description": "Spacious apartment with large garden and family-friendly neighborhood"
+    "description": "Spacious apartment with large garden and family-friendly neighborhood",
+    "qualification": {
+      "allow_pets": true,
+      "minimum_salary": 8400,
+      "minimum_credit_score": 680,
+      "deposit_required": true,
+      "deposit_amount": 2800
+    }
   }
 ]
+
 
