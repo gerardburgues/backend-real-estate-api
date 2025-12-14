@@ -11,9 +11,16 @@ from models.schemas import (
     AddAppointmentRequest,
     GetApartmentInfoRequest,
     GetApartmentQualificationRequest,
+    CheckScheduleRequest,
+    CheckScheduleResponse,
+    AvailableSlot,
+    ScoreBreakdown,
     SuccessResponse,
 )
 from utils.apartment_loader import load_apartments
+from utils.calendar_init import init_mock_calendar
+from services.calendar_service import calendar_service
+from datetime import date
 
 # Load environment variables
 load_dotenv()
@@ -37,6 +44,9 @@ except ValueError:
     # Service will be None if API key is not configured
     # This is okay for endpoints that don't require AI
     pass
+
+# Initialize mock calendar data for testing
+init_mock_calendar()
 
 
 @app.post("/tool/find-apartment")
@@ -166,6 +176,71 @@ async def get_apartment_qualification(request: GetApartmentQualificationRequest)
         )
     
     return apartment
+
+
+@app.post("/tool/check-schedule", response_model=CheckScheduleResponse)
+async def check_schedule(request: CheckScheduleRequest):
+    """
+    Check available schedule slots for a property and return scored options.
+    
+    Args:
+        request: Request containing apartment_id, optional start_date and days
+        
+    Returns:
+        List of available slots with scores, sorted by score (highest first)
+        
+    Raises:
+        HTTPException: 400 if invalid date format, 404 if apartment not found
+    """
+    # Validate apartment exists
+    apartments = load_apartments()
+    apartment_exists = any(apt.get("id") == request.apartment_id for apt in apartments)
+    
+    if not apartment_exists:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Apartment with ID {request.apartment_id} not found"
+        )
+    
+    # Parse start_date if provided
+    start_date_obj = None
+    if request.start_date:
+        try:
+            start_date_obj = date.fromisoformat(request.start_date)
+        except ValueError:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid date format. Expected YYYY-MM-DD, got {request.start_date}"
+            )
+    
+    # Find available slots with scores
+    available_slots_data = calendar_service.find_available_slots(
+        apartment_id=request.apartment_id,
+        start_date=start_date_obj,
+        days=request.days
+    )
+    
+    # Convert to response models
+    available_slots = [
+        AvailableSlot(
+            date=slot["date"],
+            time=slot["time"],
+            is_today=slot["is_today"],
+            score=slot["score"],
+            breakdown=ScoreBreakdown(**slot["breakdown"])
+        )
+        for slot in available_slots_data
+    ]
+    
+    # Get best option (first one since they're sorted by score)
+    best_option = available_slots[0] if available_slots else None
+    
+    return CheckScheduleResponse(
+        apartment_id=request.apartment_id,
+        available_slots=available_slots,
+        total_available=len(available_slots),
+        best_option=best_option
+    )
 
 
 @app.get("/health")

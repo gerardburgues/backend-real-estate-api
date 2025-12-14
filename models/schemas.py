@@ -27,6 +27,53 @@ class GetApartmentQualificationRequest(BaseModel):
     apartment_id: int
 
 
+class CheckScheduleRequest(BaseModel):
+    """Request model for checking available schedule slots"""
+    apartment_id: int
+    start_date: Optional[str] = Field(
+        default=None,
+        description="Start date for search (ISO format: YYYY-MM-DD). Defaults to today"
+    )
+    days: int = Field(
+        default=7,
+        description="Number of days to search ahead. Defaults to 7"
+    )
+
+
+class ScoreBreakdown(BaseModel):
+    """Score breakdown for a time slot"""
+    cluster_perfecto: int = Field(default=0, description="Cluster Perfecto bonus (+100)")
+    urgencia_hoy: int = Field(default=0, description="Urgencia HOY bonus (+50, only for today)")
+    efecto_ancla: int = Field(default=0, description="Efecto Ancla bonus (+20)")
+    bloque_limpio: int = Field(default=0, description="Bloque Limpio bonus (+10)")
+    cambio_turno: int = Field(default=0, description="Cambio de Turno penalty (-10)")
+    cambio_intra_turno: int = Field(default=0, description="Cambio Intra-Turno penalty (-50)")
+    romper_dia: int = Field(default=0, description="Romper el Día penalty (-80)")
+    canibalizacion: int = Field(default=0, description="Canibalización penalty (-200)")
+
+
+class AvailableSlot(BaseModel):
+    """Available time slot with score"""
+    date: str = Field(description="Date in ISO format (YYYY-MM-DD)")
+    time: str = Field(description="Time slot (HH:MM)")
+    is_today: bool = Field(description="Whether this slot is today")
+    score: int = Field(description="Total score for this slot")
+    breakdown: ScoreBreakdown = Field(description="Score breakdown")
+
+
+class CheckScheduleResponse(BaseModel):
+    """Response model for checking schedule"""
+    apartment_id: int
+    available_slots: List[AvailableSlot] = Field(
+        description="List of available slots sorted by score (highest first)"
+    )
+    total_available: int = Field(description="Total number of available slots")
+    best_option: Optional[AvailableSlot] = Field(
+        default=None,
+        description="Best scoring option (highest score)"
+    )
+
+
 class SuccessResponse(BaseModel):
     """Standard success response model"""
     status: str

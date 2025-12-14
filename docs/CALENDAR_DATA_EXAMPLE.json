@@ -1,0 +1,218 @@
+{
+  "calendar_week": {
+    "week_start": "2025-01-13",
+    "current_date": "2025-01-14",
+    "time_slots": [
+      {
+        "date": "2025-01-13",
+        "day": "Monday",
+        "slots": [
+          {"time": "09:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "09:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "10:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "10:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "11:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "11:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"}
+        ]
+      },
+      {
+        "date": "2025-01-14",
+        "day": "Tuesday",
+        "is_today": true,
+        "slots": [
+          {"time": "09:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "09:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "10:00", "duration": 30, "apartment_id": 1, "apartment_name": "Piso A", "client_id": "client_1", "status": "booked"},
+          {"time": "10:30", "duration": 30, "apartment_id": 1, "apartment_name": "Piso A", "client_id": "client_1", "status": "booked"},
+          {"time": "11:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "11:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"}
+        ]
+      },
+      {
+        "date": "2025-01-15",
+        "day": "Wednesday",
+        "slots": [
+          {"time": "09:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "09:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "10:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "10:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "11:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "11:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"}
+        ]
+      },
+      {
+        "date": "2025-01-16",
+        "day": "Thursday",
+        "slots": [
+          {"time": "09:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "09:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "10:00", "duration": 30, "apartment_id": 2, "apartment_name": "Piso B", "client_id": "client_2", "status": "booked"},
+          {"time": "10:30", "duration": 30, "apartment_id": 2, "apartment_name": "Piso B", "client_id": "client_2", "status": "booked"},
+          {"time": "11:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "11:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"}
+        ]
+      },
+      {
+        "date": "2025-01-17",
+        "day": "Friday",
+        "slots": [
+          {"time": "09:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "09:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "10:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "10:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "11:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "11:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "12:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "14:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "15:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "16:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:00", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"},
+          {"time": "17:30", "duration": 30, "apartment_id": null, "apartment_name": null, "client_id": null, "status": "free"}
+        ]
+      }
+    ]
+  },
+  "apartments": {
+    "1": {
+      "id": 1,
+      "name": "Piso A",
+      "availability_hours_per_week": 35,
+      "scarcity_level": "abundant",
+      "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
+    "2": {
+      "id": 2,
+      "name": "Piso B",
+      "availability_hours_per_week": 8,
+      "scarcity_level": "critical",
+      "available_days": ["Tuesday", "Thursday"]
+    }
+  },
+  "new_request": {
+    "apartment_id": 2,
+    "apartment_name": "Piso B",
+    "requested_date": "2025-01-14",
+    "flexible": true
+  },
+  "scoring_results": [
+    {
+      "option": 1,
+      "date": "2025-01-14",
+      "time": "09:30",
+      "is_today": true,
+      "score": 30,
+      "breakdown": {
+        "urgencia_hoy": 50,
+        "efecto_ancla": 20,
+        "bloque_limpio": 10,
+        "cambio_intra_turno": -50,
+        "total": 30
+      },
+      "reasoning": "TODAY bonus but penalized for changing properties mid-morning"
+    },
+    {
+      "option": 2,
+      "date": "2025-01-14",
+      "time": "16:00",
+      "is_today": true,
+      "score": 70,
+      "breakdown": {
+        "urgencia_hoy": 50,
+        "efecto_ancla": 20,
+        "bloque_limpio": 10,
+        "cambio_turno": -10,
+        "total": 70
+      },
+      "reasoning": "TODAY bonus with clean afternoon block"
+    },
+    {
+      "option": 3,
+      "date": "2025-01-16",
+      "time": "10:30",
+      "is_today": false,
+      "score": 100,
+      "breakdown": {
+        "cluster_perfecto": 100,
+        "total": 100
+      },
+      "reasoning": "Maximum efficiency - adjacent to existing Piso B visit"
+    },
+    {
+      "option": 4,
+      "date": "2025-01-16",
+      "time": "09:30",
+      "is_today": false,
+      "score": 20,
+      "breakdown": {
+        "efecto_ancla": 20,
+        "total": 20
+      },
+      "reasoning": "Only first slot bonus, no other advantages"
+    }
+  ],
+  "recommendation": {
+    "best_option": {
+      "rank": 1,
+      "date": "2025-01-16",
+      "time": "10:30",
+      "score": 100,
+      "apartment_id": 2,
+      "apartment_name": "Piso B"
+    },
+    "alternative_option": {
+      "rank": 2,
+      "date": "2025-01-14",
+      "time": "16:00",
+      "score": 70,
+      "apartment_id": 2,
+      "apartment_name": "Piso B",
+      "reason": "TODAY availability if client prefers immediate viewing"
+    },
+    "ai_response": "I see you're interested in Piso B. I have a viewing session for that same property on Thursday morning at 10:00. Would you be able to join that session at 10:30? This way we can maximize efficiency and you can see the property with another interested client."
+  }
+}
+
