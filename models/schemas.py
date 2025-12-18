@@ -32,11 +32,17 @@ class GetScheduleRequest(BaseModel):
     apartment_id: int
 
 
+class SlotWithScore(BaseModel):
+    """Model for a time slot with its booking score"""
+    datetime: str = Field(description="Slot datetime in format DD-MM-YYYY HH:MM")
+    score: int = Field(description="Booking score from 0-100, where 0 means shouldn't book and 100 means perfect slot")
+
+
 class ScheduleResponse(BaseModel):
     """Response model for apartment schedule"""
     apartment_id: int
     apartment_name: str
-    slots_available: List[str]
+    slots_available: List[SlotWithScore]
 
 
 class SuccessResponse(BaseModel):
