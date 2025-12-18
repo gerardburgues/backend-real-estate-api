@@ -1,6 +1,9 @@
 import os
+from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 
 from services.ai_service import AIService
@@ -10,9 +13,12 @@ from models.schemas import (
     AddAppointmentRequest,
     GetApartmentInfoRequest,
     GetApartmentQualificationRequest,
+    GetScheduleRequest,
+    ScheduleResponse,
     SuccessResponse,
 )
 from utils.apartment_loader import load_apartments
+from utils.schedule_generator import get_available_slots
 
 # Load environment variables
 load_dotenv()
@@ -27,6 +33,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve static files
+static_dir = Path(__file__).parent / "static"
+if static_dir.exists():
+    app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
 
 # Initialize AI Service
 ai_service = None
@@ -165,6 +176,54 @@ async def get_apartment_qualification(request: GetApartmentQualificationRequest)
         )
     
     return apartment
+
+
+@app.post("/tool/get-schedule", response_model=ScheduleResponse)
+async def get_schedule(request: GetScheduleRequest):
+    """
+    Get available time slots for a specific apartment.
+    Returns 30-minute slots for the next 7 days (9:00-18:00).
+
+    Args:
+        request: Request containing apartment_id
+
+    Returns:
+        ScheduleResponse with apartment_id, apartment_name, and available slots
+
+    Raises:
+        HTTPException: 404 if apartment not found
+    """
+    apartments = load_apartments()
+
+    # Find apartment by ID
+    apartment = None
+    for apt in apartments:
+        if apt.get("id") == request.apartment_id:
+            apartment = apt
+            break
+
+    if not apartment:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Apartment with ID {request.apartment_id} not found",
+        )
+
+    available_slots = get_available_slots(request.apartment_id, apartments)
+
+    return ScheduleResponse(
+        apartment_id=request.apartment_id,
+        apartment_name=apartment.get("name"),
+        slots_available=available_slots,
+    )
+
+
+@app.get("/schedule-dashboard")
+async def schedule_dashboard():
+    """Serve the schedule dashboard HTML"""
+    static_file = Path(__file__).parent / "static" / "schedule.html"
+    if not static_file.exists():
+        raise HTTPException(status_code=404, detail="Schedule dashboard not found")
+    return FileResponse(str(static_file))
 
 
 @app.get("/")
