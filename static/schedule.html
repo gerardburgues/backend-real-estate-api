@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Schedule Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --accent-coral: #ff6b6b;
+            --accent-mint: #4ecdc4;
+            --accent-gold: #ffd93d;
+            --text-primary: #f0f0f5;
+            --text-secondary: #8888a0;
+            --border-color: #2a2a3a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(ellipse at 20% 20%, rgba(78, 205, 196, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.08) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-mint), var(--accent-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .legend-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+        
+        .legend-dot.busy {
+            background: var(--accent-coral);
+            box-shadow: 0 0 12px rgba(255, 107, 107, 0.4);
+        }
+        
+        .legend-dot.available {
+            background: var(--accent-mint);
+            box-shadow: 0 0 12px rgba(78, 205, 196, 0.4);
+        }
+        
+        .apartments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .apartment-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .apartment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .apartment-header {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .apartment-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+        
+        .apartment-city {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+        }
+        
+        .apartment-id {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 50px repeat(7, 1fr);
+            gap: 2px;
+            font-size: 0.7rem;
+        }
+        
+        .schedule-header {
+            font-family: 'Space Mono', monospace;
+            text-align: center;
+            padding: 0.5rem 0.25rem;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+        
+        .time-label {
+            font-family: 'Space Mono', monospace;
+            text-align: right;
+            padding-right: 0.5rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 0.65rem;
+        }
+        
+        .slot {
+            height: 18px;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+        }
+        
+        .slot.busy {
+            background: linear-gradient(135deg, var(--accent-coral), #ff8585);
+        }
+        
+        .slot.available {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .slot:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+        
+        .filter-section {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            font-family: 'Space Mono', monospace;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.8rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-mint);
+            color: var(--bg-primary);
+            border-color: var(--accent-mint);
+        }
+        
+        .search-box {
+            font-family: 'Space Mono', monospace;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-radius: 8px;
+            width: 300px;
+            font-size: 0.85rem;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent-mint);
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+        }
+        
+        .search-box::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .apartment-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .apartment-card:nth-child(1) { animation-delay: 0.05s; }
+        .apartment-card:nth-child(2) { animation-delay: 0.1s; }
+        .apartment-card:nth-child(3) { animation-delay: 0.15s; }
+        .apartment-card:nth-child(4) { animation-delay: 0.2s; }
+        .apartment-card:nth-child(5) { animation-delay: 0.25s; }
+        .apartment-card:nth-child(6) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📅 Apartment Schedule Dashboard</h1>
+            <p class="subtitle">Busy slots overview • 7 days • 09:00 - 18:00 • 30-min intervals</p>
+        </header>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot busy"></div>
+                <span>Busy</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot available"></div>
+                <span>Available</span>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search apartments...">
+            <button class="filter-btn active" data-city="all">All Cities</button>
+            <button class="filter-btn" data-city="Barcelona">Barcelona</button>
+            <button class="filter-btn" data-city="Sabadell">Sabadell</button>
+            <button class="filter-btn" data-city="Terrassa">Terrassa</button>
+            <button class="filter-btn" data-city="Badalona">Badalona</button>
+            <button class="filter-btn" data-city="L'Hospitalet">L'Hospitalet</button>
+        </div>
+        
+        <div class="apartments-grid" id="apartmentsGrid">
+            <!-- Cards will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Apartment data from apartments.json
+        const apartments = [
+            { id: 1001, name: "Apartamento Moderno en la Rambla", city: "Barcelona" },
+            { id: 1003, name: "Suite de Lujo en Diagonal", city: "Barcelona" },
+            { id: 1004, name: "Apartamento Empresarial en Diagonal", city: "Barcelona" },
+            { id: 1005, name: "Hogar Familiar en Pau", city: "Sabadell" },
+            { id: 1006, name: "Estudio en Pau", city: "Sabadell" },
+            { id: 1007, name: "Piso Encantador en Gràcia", city: "Barcelona" },
+            { id: 1008, name: "Loft Moderno en Gràcia", city: "Barcelona" },
+            { id: 1009, name: "Apartamento Clásico en Eixample", city: "Barcelona" },
+            { id: 1010, name: "Estudio en Mallorca", city: "Barcelona" },
+            { id: 1011, name: "Apartamento Central en Terrassa", city: "Terrassa" },
+            { id: 1012, name: "Piso en Calle Mayor de Terrassa", city: "Terrassa" },
+            { id: 1013, name: "Vista al Mar en Badalona", city: "Badalona" },
+            { id: 1014, name: "Hogar Tranquilo en Badalona", city: "Badalona" },
+            { id: 1015, name: "Piso Moderno en L'Hospitalet", city: "L'Hospitalet de Llobregat" },
+            { id: 1016, name: "Apartamento en Gran Via de L'Hospitalet", city: "L'Hospitalet de Llobregat" },
+            { id: 1017, name: "Loft Industrial en Sabadell", city: "Sabadell" },
+            { id: 1018, name: "Piso en Calle Indústria de Sabadell", city: "Sabadell" },
+            { id: 1019, name: "Barrio Gótico de Barcelona", city: "Barcelona" },
+            { id: 1020, name: "Poblenou Moderno en Barcelona", city: "Barcelona" }
+        ];
+
+        // Seeded random for consistent mock data (matches Python seed)
+        function seededRandom(seed) {
+            const x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+        }
+
+        // Generate busy slots for an apartment (matches Python logic)
+        function generateBusySlots(apartmentId) {
+            const busySlots = new Set();
+            let seed = apartmentId * 1000 + 42; // Match Python seed logic
+            
+            // Use a simple seeded random that matches Python's random behavior
+            let state = seed;
+            function nextRandom() {
+                state = (state * 9301 + 49297) % 233280;
+                return state / 233280;
+            }
+            
+            for (let day = 0; day < 7; day++) {
+                for (let hour = 9; hour < 18; hour++) {
+                    for (let minute of [0, 30]) {
+                        if (nextRandom() < 0.4) {
+                            busySlots.add(`${day}-${hour}-${minute}`);
+                        }
+                    }
+                }
+            }
+            return busySlots;
+        }
+
+        // Get next 7 days labels
+        function getDayLabels() {
+            const days = [];
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const today = new Date();
+            
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
+                days.push({
+                    label: `${dayNames[date.getDay()]} ${date.getDate()}`,
+                    dayOffset: i
+                });
+            }
+            return days;
+        }
+
+        // Create apartment card HTML
+        function createApartmentCard(apartment) {
+            const busySlots = generateBusySlots(apartment.id);
+            const days = getDayLabels();
+            
+            let scheduleHTML = '<div class="schedule-grid">';
+            
+            // Header row with days
+            scheduleHTML += '<div class="schedule-header"></div>';
+            days.forEach(day => {
+                scheduleHTML += `<div class="schedule-header">${day.label}</div>`;
+            });
+            
+            // Time slots
+            for (let hour = 9; hour < 18; hour++) {
+                for (let minute of [0, 30]) {
+                    const timeStr = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                    scheduleHTML += `<div class="time-label">${timeStr}</div>`;
+                    
+                    days.forEach(day => {
+                        const slotKey = `${day.dayOffset}-${hour}-${minute}`;
+                        const isBusy = busySlots.has(slotKey);
+                        scheduleHTML += `<div class="slot ${isBusy ? 'busy' : 'available'}" title="${timeStr} - ${isBusy ? 'Busy' : 'Available'}"></div>`;
+                    });
+                }
+            }
+            
+            scheduleHTML += '</div>';
+            
+            return `
+                <div class="apartment-card" data-city="${apartment.city}" data-name="${apartment.name.toLowerCase()}">
+                    <div class="apartment-header">
+                        <div class="apartment-name">${apartment.name}</div>
+                        <div class="apartment-city">📍 ${apartment.city}</div>
+                        <div class="apartment-id">ID: ${apartment.id}</div>
+                    </div>
+                    ${scheduleHTML}
+                </div>
+            `;
+        }
+
+        // Render all apartment cards
+        function renderApartments(filter = 'all', search = '') {
+            const grid = document.getElementById('apartmentsGrid');
+            const searchLower = search.toLowerCase();
+            
+            const filteredApartments = apartments.filter(apt => {
+                const cityMatch = filter === 'all' || apt.city.includes(filter);
+                const searchMatch = !search || apt.name.toLowerCase().includes(searchLower) || apt.city.toLowerCase().includes(searchLower);
+                return cityMatch && searchMatch;
+            });
+            
+            grid.innerHTML = filteredApartments.map(createApartmentCard).join('');
+        }
+
+        // Event listeners
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const city = btn.dataset.city;
+                const search = document.getElementById('searchInput').value;
+                renderApartments(city, search);
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const activeCity = document.querySelector('.filter-btn.active').dataset.city;
+            renderApartments(activeCity, e.target.value);
+        });
+
+        // Initial render
+        renderApartments();
+    </script>
+</body>
+</html>
+

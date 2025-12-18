@@ -27,6 +27,18 @@ class GetApartmentQualificationRequest(BaseModel):
     apartment_id: int
 
 
+class GetScheduleRequest(BaseModel):
+    """Request model for getting apartment schedule"""
+    apartment_id: int
+
+
+class ScheduleResponse(BaseModel):
+    """Response model for apartment schedule"""
+    apartment_id: int
+    apartment_name: str
+    slots_available: List[str]
+
+
 class SuccessResponse(BaseModel):
     """Standard success response model"""
     status: str
